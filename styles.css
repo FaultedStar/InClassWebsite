@@ -1,43 +1,188 @@
+/* =========================
+   Theme variables
+========================= */
+:root {
+  /* Backgrounds */
+  --body-bg: #fcf8f6;
+  --header-bg: #f39a80;      /* peach bar */
+  --nav-bg: #5b4ff0;         /* blue sidebar */
+  --card-bg: #E552AE;        /* pink blocks */
+
+  /* Text & emphasis */
+  --title-color: #15267a;
+  --text-color: #222;
+
+  /* Buttons */
+  --button-bg: #e0fdff;
+  --button-bg-hover: skyblue;
+  --button-text: #15267a;
+  --button-border: #c8eaff;
+  --button-border-hover: mediumPurple;
+
+  /* Accents */
+  --underline-color: #d7d7f5;
+
+  /* Layout sizes */
+  --sidebar-w: 120px; /* tweak to match your sketch */
+  --content-max: 1200px;
+  --gap: 24px;
+  --radius: 12px;
+}
+
+/* =========================
+   Base
+========================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  padding: 40px;
   font-family: Arial, sans-serif;
-  background: #fcf8f6;
+  background: var(--body-bg);
+  color: var(--text-color);
 }
 
-/* Title */
+/* Hide headings used for a11y only */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
+
+/* =========================
+   Page grid (matches sketch)
+   header: full width (peach)
+   nav: left vertical bar (blue)
+   main: two-column area to the right
+========================= */
+.page {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "sidebar content"
+    "footer footer";
+}
+
+/* Header (peach bar) */
+.site-header {
+  grid-area: header;
+  background: var(--header-bg);
+  padding: 20px clamp(16px, 4vw, 32px);
+}
 .title {
-  color: #15267a;
-  margin-bottom: 4px;
-  font-weight: 500;
+  color: var(--title-color);
+  margin: 0;
+  font-weight: 600;
 }
 
-/* Light underline under the title */
+/* Sidebar (blue bar) */
+.sidebar {
+  grid-area: sidebar;
+  background: var(--nav-bg);
+  padding: 20px 12px;
+  color: #fff;
+}
+.nav-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.nav-list a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.nav-list a:hover,
+.nav-list a:focus-visible {
+  text-decoration: underline;
+}
+
+/* Content (two columns) */
+.content {
+  grid-area: content;
+  padding: clamp(16px, 4vw, 40px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two areas of content */
+  gap: var(--gap);
+  max-width: var(--content-max);
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* Left/right columns to allow staggered layout like your sketch */
+.column {
+  display: grid;
+  align-content: start;
+  gap: var(--gap);
+}
+.column-left  { padding-right: min(2vw, 12px); }
+.column-right { padding-left:  min(2vw, 12px); }
+
+/* Pink “block” cards */
+.card {
+  background: var(--card-bg);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Optional underline component if you want it inside cards */
 .underline {
   width: 200px;
   height: 2px;
-  background: #d7d7f5;
-  margin-bottom: 50px;
+  background: var(--underline-color);
+  margin: 12px 0 20px;
 }
 
-/* Centered button */
+/* Button (from your original) */
 .main-button {
-  display: block;
-  margin: 150px auto;
-  padding: 20px 80px;
-  background: #e0fdff;
-  border: 2px solid #c8eaff;
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 24px;
+  background: var(--button-bg);
+  border: 2px solid var(--button-border);
   border-radius: 10px;
-  font-size: 18px;
-  color: #15267a;
+  font-size: 16px;
+  color: var(--button-text);
   cursor: pointer;
-
-  /* Smooth transition to hover state */
   transition: background 0.25s ease, border-color 0.25s ease;
 }
-
-/* Hover effect */
 .main-button:hover {
-  background: skyblue;        /* #87CEEB */
-  border-color: mediumPurple; /* #9370DB */
+  background: var(--button-bg-hover);
+  border-color: var(--button-border-hover);
+}
+
+/* Footer */
+.site-footer {
+  grid-area: footer;
+  padding: 16px clamp(16px, 4vw, 32px);
+  color: #444;
+}
+
+/* =========================
+   Responsive tweaks
+========================= */
+@media (max-width: 900px) {
+  /* Narrower sidebar */
+  :root { --sidebar-w: 88px; }
+
+  /* Stack cards more naturally */
+  .content {
+    grid-template-columns: 1fr; /* becomes single-column on small screens */
+  }
+  .column-right {
+    padding-left: 0;
+  }
 }

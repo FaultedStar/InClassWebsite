@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Basic Website</title>
-
-  <!-- Describe your page — shows up in search results and browser tabs -->
   <meta name="description" content="A short description of your page goes here.">
 
   <!-- Your styles -->
-  <link rel="stylesheet" href="styles.css">
+ <link rel="stylesheet" href="styles.css">
 
   <style>
     /* Keyboard users need to see where focus is */
@@ -28,26 +26,51 @@
   </style>
 </head>
 <body>
+  <div class="page">
+    <header class="site-header">
+      <h1 class="title">Basic Website</h1>
+    </header>
 
-  <header>
-    <h1 class="title">Basic Website</h1>
-  </header>
+    <nav class="sidebar" aria-label="Primary">
+      <ul class="nav-list">
+        <li>#Home</a></li>
+        <li>#Section A</a></li>
+        <li>#Section B</a></li>
+        <li>#Contact</a></li>
+      </ul>
+    </nav>
 
-  <nav aria-label="Primary">
-    <ul>
-      <li><a href="#" aria-current="page">Home</a></li>
-    </ul>
-  </nav>
+    <main id="main-content" class="content">
+      <!-- Two content areas/columns -->
+      <section class="column column-left" aria-labelledby="col-left-h">
+        <h2 id="col-left-h" class="visually-hidden">Left content</h2>
 
-  <main id="main-content">
-    <div class="underline" aria-hidden="true"></div>
-    <p>Your content goes here.</p>
-    <button class="main-button" id="myButton" type="button">Button</button>
-  </main>
+        <article class="card">
+          <h3>Intro Block</h3>
+          <p>Your content goes here.</p>
+          <button class="main-button" id="myButton" type="button">Button</button>
+        </article>
 
-  <footer>
-    <small>&copy; <span id="year"></span> Phoebe Zeller</small>
-  </footer>
+        <article class="card">
+          <h3>Lower Left Block</h3>
+          <p>Another content block in the left column.</p>
+        </article>
+      </section>
+
+      <section class="column column-right" aria-labelledby="col-right-h">
+        <h2 id="col-right-h" class="visually-hidden">Right content</h2>
+
+        <article class="card">
+          <h3>Right Column Block</h3>
+          <p>Content in the right column.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <small>&copy; <span id="year"></span> Phoebe Zeller</small>
+    </footer>
+  </div>
 
   <script>
     // Keep the copyright year current automatically
@@ -62,7 +85,6 @@
   </script>
 
   <!-- Your scripts -->
-  <script src="script.js"></script>
-
+  script.js</script>
 </body>
 </html>

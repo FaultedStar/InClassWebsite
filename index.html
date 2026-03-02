@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Basic Website</title>
   <meta name="description" content="A short description of your page goes here.">
-
   <!-- Your styles -->
- <link rel="stylesheet" href="styles.css">
-
+  <link rel="stylesheet" href="styles.css">
   <style>
     /* Keyboard users need to see where focus is */
     :focus-visible {
       outline: 2px solid currentColor;
       outline-offset: 2px;
     }
-
     /* Respect users who prefer less motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -53,13 +50,18 @@
 
         <article class="card">
           <h3>Lower Left Block</h3>
-          <p>Another content block in the left column.</p>
+          <!-- Greeting goes here -->
+          <p id="location-greeting" role="status" aria-live="polite">
+            Detecting where you’re visiting from…
+          </p>
+          <noscript>
+            Enable JavaScript to see a personalized greeting.
+          </noscript>
         </article>
       </section>
 
       <section class="column column-right" aria-labelledby="col-right-h">
         <h2 id="col-right-h" class="visually-hidden">Right content</h2>
-
         <article class="card">
           <h3>Right Column Block</h3>
           <p>Content in the right column.</p>
@@ -68,23 +70,16 @@
     </main>
 
     <footer class="site-footer">
-      <small>&copy; <span id="year"></span> Phoebe Zeller</small>
+      <small>© <span id="year"></span> Phoebe Zeller</small>
     </footer>
   </div>
 
+  <!-- Keep the copyright year current -->
   <script>
-    // Keep the copyright year current automatically
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    const btn = document.getElementById('myButton');
-    if (btn) {
-      btn.addEventListener('click', () => {
-        alert('Button clicked');
-      });
-    }
   </script>
 
   <!-- Your scripts -->
-  script.js</script>
+  <script src="script.js" defer></script>
 </body>
 </html>
